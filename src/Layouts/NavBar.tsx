@@ -1,225 +1,204 @@
-import { useState } from "react";
 // import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import { logout } from "../../redux/userSlice";
-// import store from "../../store/store";
-// import { useSelector } from "react-redux";
-// import { selectUser } from "../../redux/userSlice";
+import { logout, selectUser } from "../redux/userSlice";
+import store from "../redux/store";
+import { useSelector } from "react-redux";
 
 function NavBar() {
-//   const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
-//   const handleLogout = (e) => {
-//     const dispatch = useDispatch;
-//     e.preventDefault();
-//     // dispatch(logout());
-//     store.dispatch(logout());
-//   };
+  const handleLogout = () => {
+    store.dispatch(logout());
+  };
 
   return (
     <>
-      <header className="wrapper myfont">
-        <nav className="navbar navbar-expand-lg navbar-light bg-main">
-          <div className="container-fluid py-2 d-flex justify-content-between">
-            <div
-              className=""
-              data-bs-toggle="offcanvas"
-              href="#offcanvasExample"
-            >
-              <i className="uil uil-bars text-light fs-25 cursor-pointer"></i>
+      <>
+        <nav className="navbar m-0 navbar-expand-lg classic transparent bg-light border-bottom-light pt-0" style={{ background: "#F0F2F5 !important" }}>
+          <div className="container-fluid flex-lg-row flex-nowrap align-items-center mt-0 pt-0">
+            <div className="navbar-brand w-100 p-1 m-0">
+              <Link to="/home">
+                <img
+                  src="/nonpawiz.png"
+                  srcSet="/nonpawiz.png"
+                  alt=""
+                  style={{ width: "40px" }}
+                />
+              </Link>
             </div>
-            <div className="d-flex justify-content-center align-items-center">
-              <h4 className="text-light mx-3 my-0 fw-normal fs-16">
-                {/* {props.text.title} */} 
-              </h4>
-            </div>
-            <div className="">
-              <div
-                className="cursor-pointer"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"
-              >
-                <i className="uil uil-wifi text-light fs-25"></i>
+            <div className="navbar-collapse offcanvas offcanvas-nav offcanvas-end" id="offcanvas">
+              <div className="offcanvas-header d-lg-none">
+                <Link to="/home">
+                  <img
+                    src="/nonpawiz.png"
+                    srcSet="/nonpawiz.png"
+                    alt=""
+                    style={{ width: "40px" }}
+                  />
+                </Link>
+                <button
+                  type="button"
+                  className="btn-close btn-close-white"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                />
               </div>
+              <div className="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+                <ul className="navbar-nav text-start">
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/home">
+                      หน้าแรก
+                    </Link>
+                  </li>
+                  {user?.username ? (
+                    <li className="nav-item d-none d-lg-block">
+                      <Link to="/home">
+                        <img
+                          src="/nonpawiz.png"
+                          srcSet="/nonpawiz.png"
+                          alt=""
+                          style={{ width: "40px" }}
+                        />
+                      </Link>
+                    </li>
+                  ) : <></>}
+
+                  {user?.username ? (
+                    <>
+                      <li className="nav-item dropdown d-block d-lg-none">
+                        <a
+                          className="nav-link dropdown-toggle"
+                          href="#"
+                          data-bs-toggle="dropdown"
+                        >
+                          {user.username}
+                        </a>
+                        <ul className="dropdown-menu p-1 mr-5">
+                          <li className="nav-item">
+                            <div className="dropdown-item cursor-pointer" onClick={handleLogout}>
+                              <i className="uil uil-signout"></i> ออกจากระบบ
+                            </div>
+                          </li>
+                        </ul>
+                        {/* <div className="nav-link cursor-pointer" onClick={handleLogout}>
+                          ออกจากระบบ
+                        </div> */}
+                      </li>
+                    </>
+                  )
+                    : (
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/home">
+                          เข้าสู่ระบบ
+                        </Link>
+                      </li>
+                    )
+
+                  }
+                  {/* <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      data-bs-toggle="dropdown"
+                    >
+                      Dropdown
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item">
+                        <a className="dropdown-item" href="#">
+                          Action
+                        </a>
+                      </li>
+                      <li className="dropdown dropdown-submenu dropend">
+                        <a
+                          className="dropdown-item dropdown-toggle"
+                          href="#"
+                          data-bs-toggle="dropdown"
+                        >
+                          Dropdown
+                        </a>
+                        <ul className="dropdown-menu">
+                          <li className="dropdown dropdown-submenu dropend">
+                            <a
+                              className="dropdown-item dropdown-toggle"
+                              href="#"
+                              data-bs-toggle="dropdown"
+                            >
+                              Dropdown
+                            </a>
+                            <ul className="dropdown-menu">
+                              <li className="nav-item">
+                                <a className="dropdown-item" href="#">
+                                  Action
+                                </a>
+                              </li>
+                              <li className="nav-item">
+                                <a className="dropdown-item" href="#">
+                                  Another Action
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li className="nav-item">
+                            <a className="dropdown-item" href="#">
+                              Action
+                            </a>
+                          </li>
+                          <li className="nav-item">
+                            <a className="dropdown-item" href="#">
+                              Another Action
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li className="nav-item">
+                        <a className="dropdown-item" href="#">
+                          Another Action
+                        </a>
+                      </li>
+                    </ul>
+                  </li> */}
+                </ul>
+                <div className="d-lg-none mt-auto pt-6 pb-6 order-4">
+                  <a href="mailto:nonpawit.dev@gmail.com" className="link-inverse">
+                    nonpawit.dev@gmail.com
+                  </a>
+                  {/* <br /> 00 (123) 456 78 90 <br /> */}
+                  <nav className="nav social social-white mt-4">
+                    <a href="#">
+                      <i className="uil uil-twitter" />
+                    </a>
+                    <a href="#">
+                      <i className="uil uil-facebook-f" />
+                    </a>
+                    <a href="#">
+                      <i className="uil uil-dribbble" />
+                    </a>
+                    <a href="#">
+                      <i className="uil uil-instagram" />
+                    </a>
+                    <a href="#">
+                      <i className="uil uil-youtube" />
+                    </a>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            <div className="navbar-other ms-lg-0">
+              <ul className="navbar-nav flex-row align-items-center ms-auto">
+                <li className="nav-item d-lg-none">
+                  <a data-bs-toggle="offcanvas" href="#offcanvas">
+                    <button className="hamburger offcanvas-nav-btn">
+                      <span />
+                    </button>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>
+      </>
 
-        <div
-          className="offcanvas offcanvas-start"
-          tabIndex={-1}
-          id="offcanvasExample"
-          aria-labelledby="offcanvasExampleLabel"
-        >
-          <div className="offcanvas-header mb-0 p-3">
-            <img
-              src="/bem-logo-light.png"
-              className="p-0"
-              alt=""
-              style={{ width: "100px" }}
-            />
-            <button
-              type="button"
-              className="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div className="offcanvas-body px-3">
-            <div className="dropdown mt-0">
-              <div className="py-0 border-bottom d-inline-block text-truncate w-100">
-                <span className="fw-normal p-1 px-0  text-light">
-                  <i className="uil uil-user"></i> 
-                  {/* {user.username} */}Admin
-                </span>
-              </div>
-              <div className="py-2 rounded cursor-pointer" id="_home">
-                <Link to="/" className="fw-normal text-light fs-16 px-3">
-                  หน้าหลัก
-                </Link>
-              </div>
-              <div className="py-2 rounded cursor-pointer" id="_home">
-                <Link to="/dsadsa" className="fw-normal text-light fs-16 px-3">
-                  หน้าหลัก
-                </Link>
-              </div>
-
-              <div
-                className="accordion accordion-wrapper mb-1"
-                id="accordionSimpleExample"
-              >
-                <div className="card plain accordion-item mx-3 py-0">
-                  <div className="card-header pb-1" id="headingSimpleOne">
-                    <button
-                      className="accordion-button fw-normal text-light fs-16 px-0 mx-0 collapsed"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseSimpleOne"
-                      aria-expanded="false"
-                      aria-controls="collapseSimpleOne"
-                    >
-                      {" "}
-                      แผนที่
-                    </button>
-                  </div>
-                  <div
-                    id="collapseSimpleOne"
-                    className="accordion-collapse collapse"
-                    aria-labelledby="headingSimpleOne"
-                    data-bs-parent="#accordionSimpleExample"
-                  >
-                    <div className="card-body px-2 py-0">
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_inventory"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-map"></i> Inventory
-                        </span>
-                      </div>
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_progress"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-analytics"></i> Progress
-                        </span>
-                      </div>
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_inspection"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-exclamation-triangle"></i>{" "}
-                          Inspection
-                        </span>
-                      </div>
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_pavement"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-no-entry"></i> Pavement
-                        </span>
-                      </div>
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_severity"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-image-broken"></i> Severity
-                        </span>
-                      </div>
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_maintenance"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          <i className="uil uil-wrench"></i> Maintenance
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="accordion accordion-wrapper mb-1"
-                id="accordionSimpleExampletwo"
-              >
-                <div className="card plain accordion-item mx-3 py-0">
-                  <div className="card-header pb-1" id="headingSimpleTwo">
-                    <button
-                      className="accordion-button fw-normal text-light fs-16 px-0 mx-0 collapsed"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseSimpleTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseSimpleTwo"
-                    >
-                      {" "}
-                      ตั้งค่า
-                    </button>
-                  </div>
-                  <div
-                    id="collapseSimpleTwo"
-                    className="accordion-collapse collapse"
-                    aria-labelledby="headingSimpleTwo"
-                    data-bs-parent="#accordionSimpleExampletwo"
-                  >
-                    <div className="card-body px-2 py-0">
-                      <div
-                        className="py-2 rounded cursor-pointer"
-                        id="_userlist"
-                      >
-                        <span className="fw-normal text-light fs-16 px-3">
-                          ข้อมูลผู้ใช้งาน
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="w-100"
-                style={{
-                  bottom: "10px",
-                  position: "absolute",
-                }}
-              >
-                {/* <a
-                  className="py-2 rounded cursor-pointer"
-                //   onClick={(e) => handleLogout(e)}
-                >
-                  <span className="fw-normal text-light fs-16 px-3">
-                    <i className="uil uil-signin"></i> ออกจากระบบ
-                  </span>
-                </a> */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
     </>
   );
 }

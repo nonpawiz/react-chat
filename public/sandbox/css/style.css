@@ -6175,11 +6175,12 @@ fieldset:disabled .btn {
 
 .nav-link {
   display: block;
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  /* padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x); */
   font-size: var(--bs-nav-link-font-size);
   font-weight: var(--bs-nav-link-font-weight);
   color: var(--bs-nav-link-color);
   transition: color 0.2s ease-in-out;
+  align-items: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6363,6 +6364,14 @@ fieldset:disabled .btn {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  align-items: center;
+  text-align: left;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    align-items: unset;
+  }
 }
 
 .navbar-nav .show>.nav-link,
@@ -50049,4 +50058,50 @@ button[disabled] {
 
 .StepButton-d10-0-2-32.active {
   background-color: #1F417C !important;
+}
+
+* {
+  font-weight: normal !important;
+}
+
+.bg-primary {
+  background-color: #f1f5fd !important;
+}
+
+.fb-link:hover {
+  /* background: rgba(0, 0, 0, .1) !important; */
+  background: white !important;
+  transition: .2s;
+  border-radius: 8px;
+}
+
+.fb-action:hover {
+  /* background: rgba(0, 0, 0, .1) !important; */
+  background: #f1f1f1 !important;
+  transition: .2s;
+  border-radius: 8px;
+}
+
+.bg-btn-ok {
+  background: #1B74E4 !important;
+}
+
+.bg-btn-cancel {
+  background: #ddd !important;
+}
+
+.border-top-light {
+  border-top: .5px solid #ddd;
+}
+
+.border-bottom-light {
+  border-bottom: .5px solid #ddd;
+}
+
+body {
+  background-color: #f1f5fd !important;
+}
+
+.bg-chat {
+  background-color: lightgray !important;
 }
