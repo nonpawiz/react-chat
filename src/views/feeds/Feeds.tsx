@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../../layouts/NavBar'
+import NavBar from '../../Layouts/NavBar'
 import { Link } from 'react-router-dom'
 import NewPost from './Post/NewPost'
 

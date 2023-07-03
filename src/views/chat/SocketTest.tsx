@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 
 function App() {
-  const useSocket = io.connect("http://localhost:8000");
+  const useSocket = io.connect("https://express.surindev.com/");
   const [active, setActive] = useState(true);
 
   const [user, setUser] = useState("");
