@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../layouts/NavBar";
+import NavBar from "../Layouts/NavBar";
 
 function Home() {
   return (

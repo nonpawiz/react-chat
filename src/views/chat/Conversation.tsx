@@ -2,8 +2,8 @@ import React from 'react'
 
 function Conversation() {
     return (
-        <div className='bg-chat' style={{ height: "78vh" }}>
-            <div className='text-center pt-3'>
+        <div className='bg-chat' style={{ height: "81vh" }}>
+            {/* <div className='text-center pt-3'>
                 <span className='badge bg-light'>วันนี้</span>
             </div>
             <div className='row'>
@@ -61,7 +61,7 @@ function Conversation() {
                     </div>
                 </div>
                 <div className='col-6'></div>
-            </div>
+            </div> */}
 
         </div>
     )
